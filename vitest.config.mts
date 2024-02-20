@@ -1,4 +1,4 @@
-// import { resolve } from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -8,7 +8,8 @@ export default defineConfig({
     globals: true,
     css: true,
     alias: {
-      // [name]: resolve(__dirname, './src'),
+      'antd-record-hotkey-input': resolve(__dirname, './packages/antd-record-hotkey-input/src'),
+      'react-use-record-hotkey': resolve(__dirname, './packages/react-use-record-hotkey/src'),
     },
     coverage: {
       reporter: ['text', 'text-summary', 'json', 'lcov'],
