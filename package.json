@@ -81,7 +81,7 @@
     "prettier-plugin-packagejson": "^2",
     "react": "^18",
     "react-dom": "^18",
-    "semantic-release": "^21",
+    "semantic-release": "^19",
     "stylelint": "^15",
     "turbo": "^1.12.4",
     "typescript": "^5",
