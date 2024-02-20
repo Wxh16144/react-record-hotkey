@@ -11,6 +11,9 @@
   },
   "license": "MIT",
   "author": "Wxh16144(wxh1220@gmail.com)",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo build --filter={./packages/*}",
     "build:watch": "turbo dev --filter={./packages/*}",

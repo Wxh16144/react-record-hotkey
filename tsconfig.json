@@ -1,5 +1,13 @@
 {
-  "include": ["packages/*/src", "tests", ".dumi/**/*", ".dumirc.ts", "*.ts", "docs"],
+  "include": [
+    "packages/*/src",
+    "tests",
+    ".dumi/**/*",
+    ".dumirc.ts",
+    "*.ts",
+    "docs",
+    "vitest.config.mts"
+  ],
   "compilerOptions": {
     "strict": true,
     "declaration": true,
