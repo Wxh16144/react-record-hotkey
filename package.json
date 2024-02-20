@@ -1,67 +1,19 @@
 {
-  "name": "easy-antd-modal",
-  "version": "1.5.1",
-  "description": "二次开发, 简化 Ant Design Modal 的使用方式",
-  "keywords": [
-    "antd",
-    "Ant Design",
-    "Modal",
-    "React",
-    "drag"
-  ],
-  "homepage": "https://github.com/Wxh16144/easy-antd-modal#readme",
+  "name": "react-record-hotkey",
+  "private": true,
+  "homepage": "https://github.com/Wxh16144/react-record-hotkey#readme",
   "bugs": {
-    "url": "https://github.com/Wxh16144/easy-antd-modal/issues/new"
+    "url": "https://github.com/Wxh16144/react-record-hotkey/issues/new"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wxh16144/easy-antd-modal.git"
+    "url": "https://github.com/Wxh16144/react-record-hotkey.git"
   },
   "license": "MIT",
   "author": "Wxh16144(wxh1220@gmail.com)",
-  "sideEffects": false,
-  "exports": {
-    ".": {
-      "types": "./es/index.d.ts",
-      "import": "./es/index.js",
-      "require": "./lib/index.js"
-    },
-    "./es/*": "./es/*",
-    "./lib/*": "./lib/*",
-    "./dist/*": "./dist/*",
-    "./mobile": {
-      "types": "./es/mobile/index.d.ts",
-      "import": "./es/mobile/index.js",
-      "require": "./lib/mobile/index.js"
-    },
-    "./drag-modal": {
-      "types": "./es/drag-modal/index.d.ts",
-      "import": "./es/drag-modal/index.js",
-      "require": "./lib/drag-modal/index.js"
-    },
-    "./hooks": {
-      "types": "./es/hooks/index.d.ts",
-      "import": "./es/hooks/index.js",
-      "require": "./lib/hooks/index.js"
-    },
-    "./util": {
-      "types": "./es/util/index.d.ts",
-      "import": "./es/util/index.js",
-      "require": "./lib/util/index.js"
-    }
-  },
-  "main": "lib/index.js",
-  "unpkg": "dist/easy-antd-modal.min.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
-  "files": [
-    "dist",
-    "lib",
-    "es"
-  ],
   "scripts": {
-    "build": "father build",
-    "build:watch": "father dev",
+    "build": "turbo build --filter={./packages/*}",
+    "build:watch": "turbo dev --filter={./packages/*}",
     "ci": "npm run lint && npm run type-check && npm run doctor && npm run build",
     "clean": "rm -rf es lib dist coverage .dumi/tmp .eslintcache .doc",
     "dev": "dumi dev",
@@ -105,6 +57,7 @@
     "@types/testing-library__jest-dom": "^5",
     "@umijs/lint": "^4",
     "@vitest/coverage-v8": "latest",
+    "antd": "^5",
     "antd4": "npm:antd@4",
     "commitlint": "^17",
     "concurrently": "^7",
@@ -124,17 +77,9 @@
     "react-dom": "^18",
     "semantic-release": "^21",
     "stylelint": "^15",
+    "turbo": "^1.12.4",
     "typescript": "^5",
     "vitest": "latest"
-  },
-  "peerDependencies": {
-    "@dnd-kit/core": "^6",
-    "@dnd-kit/modifiers": "^6",
-    "@dnd-kit/utilities": "^3",
-    "antd": ">=4.23.0 || >=5.0.0",
-    "antd-mobile": "^5",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0"
   },
   "packageManager": "pnpm@8.6.2",
   "publishConfig": {

@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "antd": "^5.12.8",
-    "easy-antd-modal": "workspace:*",
+    "antd-record-hotkey-input": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

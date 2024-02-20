@@ -1,0 +1,52 @@
+{
+  "name": "react-use-record-hotkey",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "react",
+    "hotkey",
+    "react-hotkey",
+    "react-hook"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wxh16144/react-record-hotkey.git",
+    "directory": "packages/antd-record-hotkey-input"
+  },
+  "license": "MIT",
+  "author": "Wxh16144(wxh1220@gmail.com)",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": {
+        "node": "./lib/index.js",
+        "default": "./es/index.js"
+      },
+      "require": "./lib/index.js"
+    },
+    "./es/*": {
+      "types": "./es/*.d.ts",
+      "default": "./es/*"
+    },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "default": "./lib/*"
+    }
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev"
+  },
+  "peerDependencies": {
+    "ahooks": "^3",
+    "react": ">16.8.0",
+    "react-dom": ">16.8.0"
+  }
+}

@@ -1,6 +1,5 @@
-import { resolve } from 'path';
+// import { resolve } from 'path';
 import { defineConfig } from 'vitest/config';
-import { name } from './package.json';
 
 export default defineConfig({
   test: {
@@ -9,11 +8,11 @@ export default defineConfig({
     globals: true,
     css: true,
     alias: {
-      [name]: resolve(__dirname, './src'),
+      // [name]: resolve(__dirname, './src'),
     },
     coverage: {
       reporter: ['text', 'text-summary', 'json', 'lcov'],
-      include: ['src/**/*'],
+      include: ['packages/*/src/**/*'],
     },
   },
 });

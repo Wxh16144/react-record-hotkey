@@ -6,7 +6,7 @@ hero:
     - text: 快速上手
       link: /guide
     - text: 查看源码
-      link: https://github.com/Wxh16144/easy-antd-modal
+      link: https://github.com/Wxh16144/react-record-hotkey
 
 features:
   - title: 兼容 Ant Design 4 & 5
@@ -38,7 +38,7 @@ features:
   - title: 长期维护
     image: 📅
     description: 长期维护 (欢迎 PR)
-    link: https://github.com/Wxh16144/easy-antd-modal/pulse
+    link: https://github.com/Wxh16144/react-record-hotkey/pulse
     row: 8
 ---
 
