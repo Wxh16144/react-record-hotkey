@@ -72,14 +72,18 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
   const [keys, setKeys] = useState<Set<string>>(new Set());
   const [isRecording, setIsRecording] = useState(false);
 
-  const start = React.useCallback(() => {
+  const reset = () => {
     setKeys(new Set());
+  };
+
+  const start = React.useCallback(() => {
+    reset();
     setIsRecording(true);
     ref.current?.focus?.();
   }, []);
 
   const stop = React.useCallback(() => {
-    setKeys(new Set());
+    reset();
     setIsRecording(false);
     ref.current?.blur?.();
   }, []);
@@ -131,13 +135,13 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
         const normalKey = (keyIsAlphaNum || keyIsBetweenF1andF12 || keyIsAllowedChar) && key;
         setKeys(new Set([...Array.from(modifiers), normalKey].filter(Boolean) as string[]));
       } else {
-        setKeys(new Set());
+        reset();
       }
     },
     { target: ref },
   );
 
-  return [ref, keys, { start, stop, isRecording }] as const;
+  return [ref, keys, { start, stop, reset, isRecording }] as const;
 };
 
 export default useRecordHotkey;

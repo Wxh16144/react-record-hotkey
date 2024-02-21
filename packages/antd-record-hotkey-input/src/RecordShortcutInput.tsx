@@ -58,7 +58,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     onChange,
   });
 
-  const [inputRef, keys, { isRecording, start }] = useRecordHotkey({
+  const [inputRef, keys, { isRecording, start, reset }] = useRecordHotkey({
     onConfirm: (keys) => setValue(internalFormatShortcut(keys)),
     onClean: () => setInternalValue(value),
   });
@@ -88,6 +88,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
         size="small"
         onClick={(event) => {
           event.stopPropagation();
+          reset();
           setValue('');
           setInternalValue('');
         }}
