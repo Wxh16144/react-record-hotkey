@@ -31,7 +31,7 @@ const allowedChars = [
 
 const verify = (hotkey: Set<string>) => {
   const hasModifier = MODIFIERS.some((modifier) => hotkey.has(modifier));
-  const hasNormalKey = Array.from(hotkey).some((key) => allowedChars.includes(key));
+  const hasNormalKey = Array.from(hotkey).some((key) => !MODIFIERS.includes(key));
 
   return hasModifier && hasNormalKey;
 };
