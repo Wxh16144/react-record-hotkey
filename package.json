@@ -69,6 +69,7 @@
     "cross-env": "^7",
     "del-cli": "^5.1.0",
     "dumi": "^2",
+    "dumi-plugin-code-snippets": "^1.1.0",
     "dumi-theme-antd-style": "latest",
     "eslint": "^8",
     "fast-glob": "^3.3.1",

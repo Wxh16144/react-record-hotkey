@@ -1,11 +1,11 @@
 import { ConfigProvider, Divider, Empty, Radio, Space, message } from 'antd';
 import RecordShortcutInput from 'antd-record-hotkey-input';
-import { useState } from 'react';
-import { useHotkeys } from 'react-hotkeys-hook';
-
 import { Locale } from 'antd/es/locale';
 import enUS from 'antd/locale/en_US';
 import zhCN from 'antd/locale/zh_CN';
+import { useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+import './style.css';
 
 const WithI18n = ({ children }: React.PropsWithChildren) => {
   const [locale, setLocal] = useState<Locale>(enUS);

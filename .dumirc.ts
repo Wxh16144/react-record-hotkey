@@ -8,6 +8,7 @@ const isProdSite = process.env.PREVIEW !== '1' && isProd;
 const name = 'easy-antd-modal';
 
 export default defineConfig({
+  plugins: ['dumi-plugin-code-snippets'],
   themeConfig: {
     name,
     github: homepage,
