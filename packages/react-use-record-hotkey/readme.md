@@ -10,6 +10,8 @@
 [npm-url]: http://npmjs.org/package/react-use-record-hotkey
 [npm-size]: https://img.shields.io/bundlephobia/minzip/react-use-record-hotkey?color=deepgreen&label=gizpped%20size&style=flat-square
 [npm-size-url]: https://packagephobia.com/result?p=react-use-record-hotkey
+[download-image]: https://img.shields.io/npm/dm/react-use-record-hotkey.svg?style=flat-square
+[download-url]: https://npmjs.org/package/react-use-record-hotkey
 
 ## Install
 

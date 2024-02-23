@@ -10,6 +10,8 @@
 [npm-url]: http://npmjs.org/package/antd-record-hotkey-input
 [npm-size]: https://img.shields.io/bundlephobia/minzip/antd-record-hotkey-input?color=deepgreen&label=gizpped%20size&style=flat-square
 [npm-size-url]: https://packagephobia.com/result?p=antd-record-hotkey-input
+[download-image]: https://img.shields.io/npm/dm/antd-record-hotkey-input.svg?style=flat-square
+[download-url]: https://npmjs.org/package/antd-record-hotkey-input
 
 ## Install
 
