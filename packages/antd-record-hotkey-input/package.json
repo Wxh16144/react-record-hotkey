@@ -53,5 +53,8 @@
     "react-dom": ">16.8.0",
     "react-use-record-hotkey": "workspace:^*",
     "ua-parser-js": "^1"
+  },
+  "optionalDependencies": {
+    "@types/ua-parser-js": "^0.7.39"
   }
 }

@@ -302,6 +302,10 @@ importers:
       ua-parser-js:
         specifier: ^1
         version: 1.0.37
+    optionalDependencies:
+      '@types/ua-parser-js':
+        specifier: ^0.7.39
+        version: 0.7.39
 
   packages/react-use-record-hotkey:
     dependencies:
@@ -4612,6 +4616,12 @@ packages:
     dependencies:
       '@types/jest': 29.5.3
     dev: true
+
+  /@types/ua-parser-js@0.7.39:
+    resolution: {integrity: sha512-P/oDfpofrdtF5xw433SPALpdSchtJmY7nsJItf8h3KXqOslkbySh8zq4dSWXH2oTjRvJ5PczVEoCZPow6GicLg==}
+    requiresBuild: true
+    dev: false
+    optional: true
 
   /@types/unist@2.0.7:
     resolution: {integrity: sha512-cputDpIbFgLUaGQn6Vqg3/YsJwxUwHLO13v3i5ouxT4lat0khip9AEWxtERujXV9wxIB1EyF97BSJFt6vpdI8g==}
