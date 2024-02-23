@@ -19,6 +19,10 @@ const files = [
     real: path.join(exampleWithAntd5, 'src/style.css'),
     targets: [path.join(exampleWithAntd4, 'src/style.css')],
   },
+  {
+    real: path.join(exampleWithAntd5, 'src/WithI18n.tsx'),
+    targets: [path.join(exampleWithAntd4, 'src/WithI18n.tsx')],
+  },
 ];
 
 const toArray = (value: any) => (Array.isArray(value) ? value : [value]);
