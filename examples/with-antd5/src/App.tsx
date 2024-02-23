@@ -1,49 +1,73 @@
-import { Button, Space, Typography, version } from 'antd';
-import { DragModal, Drawer, Modal } from 'easy-antd-modal';
+import { ConfigProvider, Divider, Empty, Radio, Space, message } from 'antd';
+import RecordShortcutInput from 'antd-record-hotkey-input';
+import { useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+
+import { Locale } from 'antd/es/locale';
+import enUS from 'antd/locale/en_US';
+import zhCN from 'antd/locale/zh_CN';
+
+const WithI18n = ({ children }: React.PropsWithChildren) => {
+  const [locale, setLocal] = useState<Locale>(enUS);
+
+  return (
+    <>
+      <Space>
+        <Radio.Group value={locale} onChange={(e) => setLocal(e.target.value)}>
+          <Radio.Button key="en" value={enUS}>
+            English
+          </Radio.Button>
+          <Radio.Button key="cn" value={zhCN}>
+            中文
+          </Radio.Button>
+        </Radio.Group>
+      </Space>
+      <Divider />
+      <ConfigProvider locale={locale}>{children}</ConfigProvider>
+    </>
+  );
+};
+
+const App = () => {
+  const [shortcut, setShortcut] = useState('');
+
+  const shortRef = useHotkeys<HTMLDivElement>(
+    shortcut,
+    () => {
+      message.success('快捷键触发');
+    },
+    {
+      preventDefault: true,
+    },
+  );
+
+  return (
+    <>
+      <div className="root">
+        <RecordShortcutInput
+          style={{ width: 500 }}
+          defaultValue={shortcut}
+          onChange={(value) => {
+            console.log('快捷键变更为：', value);
+            setShortcut(value);
+          }}
+        />
+
+        <br />
+        {shortcut ? (
+          <div tabIndex={-1} className="container" ref={shortRef}>
+            点击聚焦，测试快捷键：{shortcut}
+          </div>
+        ) : (
+          <Empty />
+        )}
+      </div>
+    </>
+  );
+};
 
 export default () => (
-  <>
-    <Typography.Title level={2}>antd version: {version}</Typography.Title>
-
-    <Modal title="easy-antd-modal" trigger={<Button type="primary">Modal</Button>}>
-      I ❤️ antd
-    </Modal>
-
-    <br />
-    <br />
-
-    <Drawer title="easy-antd-modal" trigger={<Button type="primary">Drawer</Button>}>
-      I ❤️ antd
-    </Drawer>
-
-    <br />
-    <br />
-
-    <DragModal title="easy-antd-modal" trigger={<Button type="primary">DragModal</Button>}>
-      I ❤️ antd
-    </DragModal>
-
-    <br />
-    <br />
-
-    <Button
-      danger
-      onClick={() => {
-        Modal.success({
-          title: 'success',
-          content: (
-            <Space>
-              不推荐使用!!!
-              <Button type="link" href="https://ant.design/docs/blog/why-not-static-cn">
-                为什么?
-              </Button>
-            </Space>
-          ),
-          onOk: () => console.log('success'),
-        });
-      }}
-    >
-      Static Methods
-    </Button>
-  </>
+  <WithI18n>
+    <App />
+  </WithI18n>
 );

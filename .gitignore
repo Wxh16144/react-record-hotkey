@@ -9,8 +9,8 @@ _roadhog-api-doc
 # production
 **/dist
 /.vscode
-/es
-/lib
+es
+lib
 
 # misc
 .DS_Store
@@ -44,3 +44,6 @@ techUI*
 
 # Symbolic link
 examples/with-antd4/src/App.tsx
+
+# turbo
+.turbo

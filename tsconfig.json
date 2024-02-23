@@ -1,5 +1,13 @@
 {
-  "include": ["src", "tests", ".dumi/**/*", ".dumirc.ts", "*.ts", "docs"],
+  "include": [
+    "packages/*/src",
+    "tests",
+    ".dumi/**/*",
+    ".dumirc.ts",
+    "*.ts",
+    "docs",
+    "vitest.config.mts"
+  ],
   "compilerOptions": {
     "strict": true,
     "declaration": true,
@@ -11,9 +19,9 @@
     "types": ["vitest/globals"],
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@/*": ["src"],
-      "easy-antd-modal": ["src"],
-      "easy-antd-modal/*": ["src/*", "*"]
+      "@test/*": ["tests"],
+      "antd-record-hotkey-input": ["packages/antd-record-hotkey-input/src"],
+      "react-use-record-hotkey": ["packages/react-use-record-hotkey/src"]
     }
   }
 }

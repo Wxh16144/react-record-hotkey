@@ -11,7 +11,12 @@ module.exports = {
         changelogFile: 'CHANGELOG.md',
       },
     ],
-    '@semantic-release/npm',
+    /**
+     * using monorepo, use "@semrel-extra/npm" instead of the official package
+     * https://github.com/dhoulb/multi-semantic-release#npm-invalid-npm-token
+     */
+    // '@semantic-release/npm',
+    '@semrel-extra/npm',
     [
       '@semantic-release/github',
       {

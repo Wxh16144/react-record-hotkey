@@ -1,0 +1,57 @@
+{
+  "name": "antd-record-hotkey-input",
+  "version": "0.0.0",
+  "description": "",
+  "keywords": [
+    "react",
+    "hotkey",
+    "antd",
+    "Ant Design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wxh16144/react-record-hotkey.git",
+    "directory": "packages/antd-record-hotkey-input"
+  },
+  "license": "MIT",
+  "author": "Wxh16144(wxh1220@gmail.com)",
+  "exports": {
+    ".": {
+      "types": "./es/index.d.ts",
+      "import": {
+        "node": "./lib/index.js",
+        "default": "./es/index.js"
+      },
+      "require": "./lib/index.js"
+    },
+    "./es/*": {
+      "types": "./es/*.d.ts",
+      "default": "./es/*"
+    },
+    "./lib/*": {
+      "types": "./lib/*.d.ts",
+      "default": "./lib/*"
+    }
+  },
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev"
+  },
+  "peerDependencies": {
+    "@ant-design/icons": "^5",
+    "ahooks": "^3",
+    "antd": "^5 || ^4",
+    "rc-util": "^5",
+    "react": ">16.8.0",
+    "react-dom": ">16.8.0",
+    "react-use-record-hotkey": "workspace:^*",
+    "ua-parser-js": "^1"
+  }
+}
