@@ -47,6 +47,9 @@ importers:
       antd:
         specifier: ^5
         version: 5.12.8(react-dom@18.2.0)(react@18.2.0)
+      antd-record-hotkey-input:
+        specifier: workspace:*
+        version: link:packages/antd-record-hotkey-input
       antd4:
         specifier: npm:antd@4
         version: /antd@4.24.13(react-dom@18.2.0)(react@18.2.0)

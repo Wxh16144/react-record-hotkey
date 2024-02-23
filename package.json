@@ -63,6 +63,7 @@
     "@umijs/lint": "^4",
     "@vitest/coverage-v8": "latest",
     "antd": "^5",
+    "antd-record-hotkey-input": "workspace:*",
     "antd4": "npm:antd@4",
     "commitlint": "^17",
     "concurrently": "^7",
