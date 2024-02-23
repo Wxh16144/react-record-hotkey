@@ -1,7 +1,8 @@
 ---
-title: Quick Usage
+title: antd-record-hotkey-input
 nav:
   order: 1
+  title: Quick Usage
 ---
 
 ## Hook
@@ -15,15 +16,3 @@ npm i antd-record-hotkey-input -S
 ### Example
 
 <<< ../examples/react-hooks/src/App.tsx
-
-## Antd Input
-
-### Install
-
-```bash
-npm i react-use-record-hotkey -S
-```
-
-### Example
-
-<<< ../examples/with-antd5/src/App.tsx
