@@ -1,5 +1,6 @@
 import { CloseCircleFilled, EditOutlined } from '@ant-design/icons';
 import { useControllableValue, useUpdateEffect } from 'ahooks';
+import type { StandardProps } from 'ahooks/es/useControllableValue';
 import type { InputProps } from 'antd';
 import { Input, Space, Tag } from 'antd';
 import type { InputRef } from 'antd/es/input';
@@ -10,15 +11,22 @@ import ActionIcon from './ActionIcon';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 
+type ShortcutStandardOptions = StandardProps<string>;
+
 export interface RecordShortcutInputProps
-  extends Omit<InputProps, 'readOnly' | 'onChange' | 'value' | 'suffix' | 'defaultValue'> {
-  defaultValue?: string;
-  onChange?: (shortcut: string) => void;
+  extends Omit<
+      InputProps,
+      'readOnly' | 'suffix' | 'status' | 'placeholder' | keyof ShortcutStandardOptions
+    >,
+    Partial<ShortcutStandardOptions> {
+  status?: InputProps['status'] | ((isRecording: boolean) => InputProps['status']);
+  placeholder?: string | ((isRecording: boolean) => string);
   /**
    * 格式化快捷键显示， 比如 mac 下的 command 键显示为 ⌘
    * @default (shortcut) => shortcut
    */
   formatShortcut?: (shortcut: string) => string;
+  onConfirm?: (shortcut: string) => void;
 }
 
 const internalFormatShortcut = (keys: Set<string>) => {
@@ -41,36 +49,36 @@ const internalFormatShortcut = (keys: Set<string>) => {
 function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.ForwardedRef<InputRef>) {
   const {
     status,
-    defaultValue: propsDefaultValue,
-    onChange,
     placeholder,
     allowClear,
-    formatShortcut = defaultFormatShortcut,
     onDoubleClick,
+    formatShortcut = defaultFormatShortcut,
+    onConfirm,
     ...restProps
   } = props;
   const t = useIntl().getMessage;
 
-  const [internalValue, setInternalValue] = React.useState(propsDefaultValue ?? '');
-
-  const [value, setValue] = useControllableValue<string>({
-    defaultValue: internalValue,
-    onChange,
-  });
+  const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
+  const [internalValue, setInternalValue] = React.useState<string>(value);
 
   const [inputRef, keys, { isRecording, start, reset }] = useRecordHotkey({
-    onConfirm: (keys) => setValue(internalFormatShortcut(keys)),
-    onClean: () => setInternalValue(value),
+    onConfirm: (keys) => {
+      const finalKeys = internalFormatShortcut(keys);
+      setInternalValue(finalKeys);
+      setValue(finalKeys);
+      onConfirm?.(finalKeys);
+    },
+    onClean: () => setValue(internalValue),
   });
 
   const shortcut = React.useMemo(() => internalFormatShortcut(keys), [keys]);
 
   useUpdateEffect(() => {
-    if (isRecording) setInternalValue(shortcut);
+    if (isRecording) setValue(shortcut);
   }, [shortcut, isRecording]);
 
   const bindInputRef = React.useCallback((el: InputRef) => {
-    (inputRef.current as any) = el?.input;
+    inputRef.current = el?.input;
   }, []);
 
   let actions: React.ReactNode[] = [
@@ -91,6 +99,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
           reset();
           setValue('');
           setInternalValue('');
+          onConfirm?.('');
         }}
         type="text"
         title={t('ShortcutInput.clear', 'Clear')}
@@ -111,10 +120,25 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     actions
   );
 
-  const mergedPlaceholder =
-    placeholder ?? t('ShortcutInput.placeholder', 'Press any key to set shortcut');
+  const mergedPlaceholder = (function () {
+    if (typeof placeholder === 'function') {
+      return placeholder(isRecording);
+    }
 
-  const mergedStatus = status ?? (isRecording ? 'warning' : status);
+    return (
+      placeholder ??
+      (isRecording
+        ? t('ShortcutInput.recordingPlaceholder', 'Press any key combination')
+        : t('ShortcutInput.placeholder', 'Double click to edit'))
+    );
+  })();
+
+  const mergedStatus = (function () {
+    if (typeof status === 'function') {
+      return status(isRecording);
+    }
+    return status ?? (isRecording ? 'warning' : status);
+  })();
 
   const handleDoubleClick: typeof onDoubleClick = (e) => {
     onDoubleClick?.(e);
@@ -122,12 +146,15 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     start();
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { onChange /** pick, unused */, ...rest } = restProps;
+
   return (
     <Input
       readOnly
-      {...restProps}
+      {...rest}
       ref={composeRef(bindInputRef, ref)}
-      value={formatShortcut(internalValue)}
+      value={formatShortcut(value)}
       placeholder={mergedPlaceholder}
       suffix={mergedSuffix}
       status={mergedStatus}

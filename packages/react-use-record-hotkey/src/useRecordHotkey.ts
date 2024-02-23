@@ -55,25 +55,29 @@ export interface Options {
  *  },
  * });
  *
+ * const hotkey = Array.from(keys).join('+');
+ *
  * return (
  *  <div>
- *   <input ref={inputRef} />
+ *   <input ref={inputRef} autoFocus readOnly value={hotkey} />
  *   <button onClick={start}>Start</button>
  *   <button onClick={stop}>Stop</button>
  *   <p>Recording: {isRecording ? 'Yes' : 'No'}</p>
- *   <p>Hotkey: {Array.from(keys).join('+')}</p>
+ *   <p>Hotkey: {hotkey}</p>
  * </div>
  * );
  * ```
  **/
 const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
   const { onClean, onConfirm } = opt || {};
-  const ref = useRef<InputEL>(null);
+  const ref = useRef<InputEL | null>(null);
+  const blurRef = useRef<'escape' | 'enter' | null>();
   const [keys, setKeys] = useState<Set<string>>(new Set());
   const [isRecording, setIsRecording] = useState(false);
 
   const reset = () => {
     setKeys(new Set());
+    blurRef.current = null;
   };
 
   const start = React.useCallback(() => {
@@ -95,11 +99,14 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
     () => {
       setIsRecording(false);
 
-      if (isValid) {
+      if (isValid && blurRef.current !== 'escape') {
         onConfirm?.(keys);
       } else {
         onClean?.();
+        reset();
       }
+
+      blurRef.current = null;
     },
     { target: ref },
   );
@@ -119,6 +126,7 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
 
       if (['escape', 'enter'].includes(key) && !someModifierIsPressed) {
         setIsRecording(false);
+        blurRef.current = key as 'escape' | 'enter';
         event.target?.blur?.();
 
         return;
