@@ -42,7 +42,8 @@
   ],
   "scripts": {
     "build": "father build",
-    "dev": "father dev"
+    "dev": "father dev",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "ahooks": "^3",
