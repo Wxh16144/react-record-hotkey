@@ -1,3 +1,13 @@
+## antd-record-hotkey-input [1.0.1](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.0...antd-record-hotkey-input@1.0.1) (2024-02-25)
+
+### Bug Fixes
+
+- build artifact is empty error ([8accd4b](https://github.com/Wxh16144/react-record-hotkey/commit/8accd4b2a8be2b3dd8999edbd609ef501bc78024))
+
+### Dependencies
+
+- **react-use-record-hotkey:** upgraded to 1.0.1
+
 # antd-record-hotkey-input 1.0.0 (2024-02-25)
 
 ### Features
