@@ -1,3 +1,9 @@
+## react-use-record-hotkey [1.0.1](https://github.com/Wxh16144/react-record-hotkey/compare/react-use-record-hotkey@1.0.0...react-use-record-hotkey@1.0.1) (2024-02-25)
+
+### Bug Fixes
+
+- build artifact is empty error ([8accd4b](https://github.com/Wxh16144/react-record-hotkey/commit/8accd4b2a8be2b3dd8999edbd609ef501bc78024))
+
 # react-use-record-hotkey 1.0.0 (2024-02-25)
 
 ### Features
