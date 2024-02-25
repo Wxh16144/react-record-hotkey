@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import path from 'path';
 import { homepage } from './package.json';
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -23,5 +24,13 @@ export default defineConfig({
   outputPath: '.doc',
   alias: {
     antd$: require.resolve('antd'),
+    'react-use-record-hotkey$': path.resolve(
+      __dirname,
+      './packages/react-use-record-hotkey/src/index.ts',
+    ),
+    'antd-record-hotkey-input$': path.resolve(
+      __dirname,
+      './packages/antd-record-hotkey-input/src/index.ts',
+    ),
   },
 });
