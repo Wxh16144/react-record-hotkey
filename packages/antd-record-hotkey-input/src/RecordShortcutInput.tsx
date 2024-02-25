@@ -1,33 +1,13 @@
 import { CloseCircleFilled, EditOutlined } from '@ant-design/icons';
 import { useControllableValue, useUpdateEffect } from 'ahooks';
-import type { StandardProps } from 'ahooks/es/useControllableValue';
-import type { InputProps } from 'antd';
 import { Input, Space, Tag } from 'antd';
-import type { InputRef } from 'antd/es/input';
 import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon from './ActionIcon';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
-
-type ShortcutStandardOptions = StandardProps<string>;
-
-export interface RecordShortcutInputProps
-  extends Omit<
-      InputProps,
-      'readOnly' | 'suffix' | 'status' | 'placeholder' | keyof ShortcutStandardOptions
-    >,
-    Partial<ShortcutStandardOptions> {
-  status?: InputProps['status'] | ((isRecording: boolean) => InputProps['status']);
-  placeholder?: string | ((isRecording: boolean) => string);
-  /**
-   * 格式化快捷键显示， 比如 mac 下的 command 键显示为 ⌘
-   * @default (shortcut) => shortcut
-   */
-  formatShortcut?: (shortcut: string) => string;
-  onConfirm?: (shortcut: string) => void;
-}
+import type { InputRef, RecordShortcutInputProps } from './type';
 
 const internalFormatShortcut = (keys: Set<string>) => {
   return Array.from(keys).join(' + ');

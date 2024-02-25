@@ -16,3 +16,12 @@ npm i antd-record-hotkey-input -S
 ### Example
 
 <<< ../examples/react-hooks/src/App.tsx
+
+### Interface
+
+```tsx | pure
+export interface Options {
+  onClean?: () => void;
+  onConfirm?: (validHotkey: Set<string>) => void;
+}
+```

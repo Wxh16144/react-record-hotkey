@@ -5,3 +5,7 @@ nav:
 ---
 
 <code src="../examples/with-antd5/src/App.tsx"></code>
+
+### Interface
+
+<<< ../packages/antd-record-hotkey-input/src/type.ts
