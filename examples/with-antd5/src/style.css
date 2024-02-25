@@ -10,10 +10,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: var(--ant-color-bg-container, #f0f0f0);
 }
 
 .container:focus,
 .container:focus-within {
-  outline: 2px solid #1890ff;
+  outline: 2px solid var(--ant-color-primary, #1677ff) !important;
 }

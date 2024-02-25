@@ -6,7 +6,7 @@
     ".dumirc.ts",
     "*.ts",
     "docs",
-    "vitest.config.mts"
+    "vitest.config.mts",
   ],
   "compilerOptions": {
     "strict": true,

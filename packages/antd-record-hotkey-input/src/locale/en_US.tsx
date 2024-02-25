@@ -1,6 +1,7 @@
 export default {
   ShortcutInput: {
-    placeholder: 'Press any key to set shortcut',
+    placeholder: 'Double click to edit',
+    recordingPlaceholder: 'Press any key combination',
     edit: 'Edit',
     recording: 'Recording...',
     clear: 'Clear',

@@ -1,8 +1,8 @@
 ---
-title: 更新日志
+title: react-use-record-hotkey
 nav:
-  title: 更新日志
-  order: 999
+  title: ChangeLog
+  order: 99
 ---
 
-<embed src="../CHANGELOG.md"></embed>
+<embed src="../packages/react-use-record-hotkey/CHANGELOG.md"></embed>

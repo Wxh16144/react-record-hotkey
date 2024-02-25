@@ -31,21 +31,9 @@
 
 - 支持 antd4.x 和 antd5.x, API 保持一致
 
-## 快速上手
+## Full Document
 
-### 安装
-
-推荐使用 `pnpm` 安装
-
-```bash
-# todo
-```
-
-### 使用
-
-```tsx | pure
-// todo
-```
+https://wxh16144.github.io/react-record-hotkey
 
 ## 迭代记录
 

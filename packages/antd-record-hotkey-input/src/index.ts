@@ -10,4 +10,4 @@ export { default as formatShortcut } from './formatShortcut';
 
 // types
 export type { ActionIconProps } from './ActionIcon';
-export type { RecordShortcutInputProps } from './RecordShortcutInput';
+export * from './type';
