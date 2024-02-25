@@ -12,6 +12,9 @@ export default defineConfig({
   themeConfig: {
     name,
     github: homepage,
+    hero: {
+      showCustomContent: true,
+    },
   },
   base: isProdSite ? `/${name}/` : '/',
   publicPath: isProdSite ? `/${name}/` : '/',
