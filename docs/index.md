@@ -21,5 +21,12 @@ import RecordShortcutInput from 'antd-record-hotkey-input';
 export default () => <RecordShortcutInput />;
 ```
 
-<div>
 </div>
+</div>
+
+<details>
+  <summary style="text-align: center;">快捷键规则?</summary>
+  
+<<< ../packages/antd-record-hotkey-input/src/RecordShortcutInput.tsx#shortcut-rules
+  
+</details>

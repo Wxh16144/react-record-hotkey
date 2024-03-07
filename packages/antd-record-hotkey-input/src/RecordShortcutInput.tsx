@@ -13,6 +13,7 @@ const internalFormatShortcut = (keys: Set<string>) => {
   return Array.from(keys).join(' + ');
 };
 
+// #region shortcut-rules
 /**
  * 快捷键编辑器
  * @description 合法的快捷键格式为：`ctrl + shift + a` （即必须包含修饰键和一个普通键）
@@ -26,6 +27,7 @@ const internalFormatShortcut = (keys: Set<string>) => {
  * -  如果是合法的快捷键，调用 onChange 并传入此快捷键
  * -  如果不是合法的快捷键，调恢复输入框中的内容为上一次的快捷键
  */
+// #endregion shortcut-rules
 function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.ForwardedRef<InputRef>) {
   const {
     status,
