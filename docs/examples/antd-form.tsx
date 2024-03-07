@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import userShortcuts from './user-shortcuts.json';
 
 const checkShortcutKeyConflict: RuleRender = ({ getFieldsValue }) => ({
-  validator: ({ field }, value) => {
+  validator: ({ field }: any, value) => {
     const otherShortcuts = Object.entries(getFieldsValue()).filter(([k]) => k !== field);
     if (value && otherShortcuts.some(([, v]) => v === value)) {
       return Promise.reject(new Error('快捷键设置冲突'));
