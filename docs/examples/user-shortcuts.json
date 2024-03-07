@@ -1,0 +1,32 @@
+[
+  {
+    "label": "新建项目",
+    "field": "newProject",
+    "value": "ctrl+n"
+  },
+  {
+    "label": "保存项目",
+    "field": "saveProject",
+    "value": "ctrl+s"
+  },
+  {
+    "label": "新建页面",
+    "field": "newPage",
+    "value": "ctrl+shift+n"
+  },
+  {
+    "label": "保存页面",
+    "field": "savePage",
+    "value": "ctrl+shift+s"
+  },
+  {
+    "label": "撤销",
+    "field": "undo",
+    "value": "ctrl+z"
+  },
+  {
+    "label": "重做",
+    "field": "redo",
+    "value": "ctrl+shift+z"
+  }
+]
