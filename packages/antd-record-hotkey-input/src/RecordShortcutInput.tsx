@@ -16,17 +16,22 @@ const internalFormatShortcut = (keys: Set<string>) => {
 
 // #region shortcut-rules
 /**
- * 快捷键编辑器
- * @description 合法的快捷键格式为：`ctrl + shift + a` （即必须包含修饰键和一个普通键）
- * @rules
- * -  允许点击清除按钮清除快捷键
- * -  点击编辑按钮后，进入编辑状态（输入框自动聚焦）此时输入框会显示为黄色
- * -  按下任意键组合后显示在输入框中（必须是合法的快捷键）
+ * ## 快捷键编辑输入框
  *
- * -  如果按下的是 ESC 键，退出编辑状态
- * -  如果按下的是 Enter 键或者输入框失去焦点，退出编辑状态，判断此时输入框中的内容是合法的快捷键
- * -  如果是合法的快捷键，调用 onChange 并传入此快捷键
- * -  如果不是合法的快捷键，调恢复输入框中的内容为上一次的快捷键
+ * > 合法的快捷键格式为: `ctrl + shift + a`  (即必须包含修饰键和一个普通键）
+ *
+ * ### 快捷键规则
+ * -  允许点击清除按钮清除快捷键。
+ * -  允许点击编辑按钮/双击输入框进入编辑状态 (输入框自动聚焦) 此时输入框会显示为黄色。
+ * -  按下任意合法键组后将会显示在输入框中。
+ *
+ * -  如果按下的是 ESC 键，退出编辑状态。
+ * -  如果按下的是 Enter 键或者输入框失去焦点，退出编辑状态，判断此时输入框中的内容是合法的快捷键。
+ * -  如果是合法的快捷键，调用 onChange 并传入此快捷键。
+ * -  如果不是合法的快捷键，将恢复输入框中的内容为上一次的快捷键。
+ *
+ * ### FAQ
+ * - [如何搭配 antd Form 使用?](https://github.com/Wxh16144/react-record-hotkey/blob/master/docs/examples/antd-form.tsx)
  */
 // #endregion shortcut-rules
 function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.ForwardedRef<InputRef>) {
