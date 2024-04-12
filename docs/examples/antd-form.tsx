@@ -1,4 +1,4 @@
-import { Button, Form, Typography } from 'antd';
+import { Button, Form, Space, Typography } from 'antd';
 import RecordShortcutInput from 'antd-record-hotkey-input';
 import type { RuleRender } from 'antd/es/form';
 import { useEffect, useState } from 'react';
@@ -8,7 +8,9 @@ const checkShortcutKeyConflict: RuleRender = ({ getFieldsValue }) => ({
   validator: ({ field }: any, value) => {
     const otherShortcuts = Object.entries(getFieldsValue()).filter(([k]) => k !== field);
     if (value && otherShortcuts.some(([, v]) => v === value)) {
-      return Promise.reject(new Error('快捷键设置冲突'));
+      return Promise.reject(
+        new Error(navigator?.language?.startsWith('zh') ? '快捷键冲突' : 'Shortcut key conflict'),
+      );
     }
     return Promise.resolve();
   },
@@ -51,9 +53,16 @@ const App = () => {
           </Form.Item>
         ))}
       </Form>
-      <Button onClick={() => form.submit()} htmlType="submit">
-        Submit
-      </Button>
+
+      <Space>
+        <Button onClick={() => form.submit()} htmlType="submit" type="primary">
+          Submit
+        </Button>
+
+        <Button danger onClick={() => form.resetFields()}>
+          Reset
+        </Button>
+      </Space>
 
       <Typography.Paragraph>
         <pre>{JSON.stringify(usefulShortcuts, null, 2)}</pre>
