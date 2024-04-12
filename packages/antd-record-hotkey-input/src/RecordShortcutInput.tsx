@@ -5,6 +5,7 @@ import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon from './ActionIcon';
+import DisabledContext from './DisabledContext';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
@@ -36,9 +37,13 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     onDoubleClick,
     formatShortcut = defaultFormatShortcut,
     onConfirm,
+    disabled,
     ...restProps
   } = props;
   const t = useIntl().getMessage;
+
+  const ctxDisabled = React.useContext(DisabledContext);
+  const mergedDisabled = disabled ?? ctxDisabled;
 
   const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
   const [internalValue, setInternalValue] = React.useState<string>(value);
@@ -132,16 +137,18 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   const { onChange /** pick, unused */, ...rest } = restProps;
 
   return (
-    <Input
-      readOnly
-      {...rest}
-      ref={composeRef(bindInputRef, ref)}
-      value={formatShortcut(value)}
-      placeholder={mergedPlaceholder}
-      suffix={mergedSuffix}
-      status={mergedStatus}
-      onDoubleClick={handleDoubleClick}
-    />
+    <DisabledContext.Provider value={mergedDisabled}>
+      <Input
+        readOnly
+        {...rest}
+        ref={composeRef(bindInputRef, ref)}
+        value={formatShortcut(value)}
+        placeholder={mergedPlaceholder}
+        suffix={mergedSuffix}
+        status={mergedStatus}
+        onDoubleClick={handleDoubleClick}
+      />
+    </DisabledContext.Provider>
   );
 }
 

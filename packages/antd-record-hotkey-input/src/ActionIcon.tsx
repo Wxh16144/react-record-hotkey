@@ -1,6 +1,8 @@
 import type { ButtonProps, TooltipProps } from 'antd';
 import { Button, Tooltip } from 'antd';
 import type { CSSProperties } from 'react';
+import { useContext } from 'react';
+import DisabledContext from './DisabledContext';
 
 export interface ActionIconProps extends Omit<ButtonProps, 'title'> {
   title?: TooltipProps['title'];
@@ -10,10 +12,15 @@ export interface ActionIconProps extends Omit<ButtonProps, 'title'> {
 }
 
 const ActionIcon = (props: ActionIconProps) => {
-  const { placement, title, icon, cursor, onClick, ...restProps } = props;
-  let iconNode = <Button icon={icon} style={{ cursor }} {...restProps} onClick={onClick} />;
+  const { placement, title, icon, cursor, disabled, style, ...restProps } = props;
+  const ctxDisabled = useContext(DisabledContext);
+  const mergedDisabled = disabled ?? ctxDisabled;
 
-  if (title) {
+  let iconNode = (
+    <Button icon={icon} style={{ ...style, cursor }} disabled={mergedDisabled} {...restProps} />
+  );
+
+  if (title && !mergedDisabled) {
     iconNode = (
       <Tooltip arrow={false} title={title} placement={placement}>
         {iconNode}
