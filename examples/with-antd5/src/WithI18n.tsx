@@ -1,4 +1,4 @@
-import { App as AntdApp, ConfigProvider, Divider, Radio, Space, version } from 'antd';
+import { App as AntdApp, ConfigProvider, Divider, Radio, Space, Typography, version } from 'antd';
 import { Locale } from 'antd/es/locale';
 import enUS from 'antd/locale/en_US';
 import zhCN from 'antd/locale/zh_CN';
@@ -28,6 +28,11 @@ const WithI18n = ({ children }: React.PropsWithChildren) => {
             中文
           </Radio.Button>
         </Radio.Group>
+
+        <div style={{ display: 'flex' }}>
+          <Typography.Text>antd</Typography.Text>
+          <Typography.Text code>v{version}</Typography.Text>
+        </div>
       </Space>
       <Divider />
       <ConfigProvider {...CPprops} />
