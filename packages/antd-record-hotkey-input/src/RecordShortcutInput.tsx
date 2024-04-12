@@ -38,6 +38,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     formatShortcut = defaultFormatShortcut,
     onConfirm,
     disabled,
+    size: inputSize,
     ...restProps
   } = props;
   const t = useIntl().getMessage;
@@ -68,6 +69,9 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     inputRef.current = el?.input;
   }, []);
 
+  const actionStyle: React.CSSProperties | undefined =
+    inputSize !== 'large' ? { maxHeight: 22 } : undefined;
+
   let actions: React.ReactNode[] = [
     <ActionIcon
       key="edit"
@@ -76,6 +80,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
       type="text"
       title={t('ShortcutInput.edit', 'Edit')}
       icon={<EditOutlined />}
+      style={actionStyle}
     />,
     allowClear && (
       <ActionIcon
@@ -91,6 +96,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
         type="text"
         title={t('ShortcutInput.clear', 'Clear')}
         icon={<CloseCircleFilled />}
+        style={actionStyle}
       />
     ),
   ].filter(Boolean);
@@ -100,7 +106,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   }
 
   const mergedSuffix = isRecording ? (
-    <Tag style={{ margin: 0 }} color="warning">
+    <Tag style={{ margin: 0 }} color="warning" bordered={false}>
       {t('ShortcutInput.recording', 'Recording...')}
     </Tag>
   ) : (
@@ -140,6 +146,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     <DisabledContext.Provider value={mergedDisabled}>
       <Input
         readOnly
+        size={inputSize}
         {...rest}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
