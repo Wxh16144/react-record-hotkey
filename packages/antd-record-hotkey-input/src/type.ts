@@ -1,7 +1,6 @@
 import type { StandardProps } from 'ahooks/es/useControllableValue';
-import type { Options } from 'react-use-record-hotkey';
-
 import type { InputProps } from 'antd';
+import type { Options } from 'react-use-record-hotkey';
 
 type MaybeFunction<T> = T | ((isRecording: boolean) => T);
 
