@@ -1,3 +1,13 @@
+# antd-record-hotkey-input [1.1.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.4...antd-record-hotkey-input@1.1.0) (2024-04-13)
+
+### Features
+
+- 支持回车开始录制 ([#8](https://github.com/Wxh16144/react-record-hotkey/issues/8)) ([f63ff04](https://github.com/Wxh16144/react-record-hotkey/commit/f63ff0416a962cc2f5b9fb8a8912c587b4fc3bae))
+
+### Dependencies
+
+- **react-use-record-hotkey:** upgraded to 1.1.0
+
 ## antd-record-hotkey-input [1.0.4](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.3...antd-record-hotkey-input@1.0.4) (2024-04-13)
 
 ### Bug Fixes
