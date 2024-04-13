@@ -1,3 +1,9 @@
+## antd-record-hotkey-input [1.0.4](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.3...antd-record-hotkey-input@1.0.4) (2024-04-13)
+
+### Bug Fixes
+
+- 改进 4.x 和 5.x feature 差异 ([#6](https://github.com/Wxh16144/react-record-hotkey/issues/6)) ([36c030b](https://github.com/Wxh16144/react-record-hotkey/commit/36c030bc8ac9065232fccdd20505257faacf9ab5))
+
 ## antd-record-hotkey-input [1.0.3](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.2...antd-record-hotkey-input@1.0.3) (2024-04-13)
 
 ### Bug Fixes
