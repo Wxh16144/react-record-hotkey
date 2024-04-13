@@ -173,7 +173,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onChange /** pick, unused */, ...rest } = restProps;
 
-  const prefixCls = getPrefixCls('shortcut-input');
+  const prefixCls = getPrefixCls('record-hotkey-input');
   const cls = cx(className, prefixCls, {
     [`${prefixCls}-disabled`]: mergedDisabled,
     [`${prefixCls}-recording`]: isRecording,
