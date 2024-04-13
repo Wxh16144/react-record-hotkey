@@ -5,7 +5,7 @@ import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon from './ActionIcon';
-import DisabledContext from './DisabledContext';
+import { DisabledContext, SizeContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
@@ -51,6 +51,9 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   const ctxDisabled = React.useContext(DisabledContext);
   const mergedDisabled = disabled ?? ctxDisabled;
 
+  const ctxSize = React.useContext(SizeContext);
+  const mergedSize = inputSize ?? ctxSize;
+
   const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
   const [internalValue, setInternalValue] = React.useState<string>(value);
 
@@ -75,7 +78,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   }, []);
 
   const actionStyle: React.CSSProperties | undefined =
-    inputSize !== 'large' ? { maxHeight: 22 } : undefined;
+    mergedSize !== 'large' ? { maxHeight: 22 } : undefined;
 
   let actions: React.ReactNode[] = [
     <ActionIcon
@@ -151,7 +154,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     <DisabledContext.Provider value={mergedDisabled}>
       <Input
         readOnly
-        size={inputSize}
+        size={mergedSize}
         {...rest}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
