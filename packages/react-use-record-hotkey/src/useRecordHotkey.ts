@@ -36,6 +36,7 @@ const verify = (hotkey: Set<string>) => {
   return hasModifier && hasNormalKey;
 };
 
+// #region record-option
 export interface Options {
   onClean?: () => void;
   onConfirm?: (validHotkey: Set<string>) => void;
@@ -45,6 +46,7 @@ export interface Options {
    */
   startOnEnter?: boolean;
 }
+// #endregion record-option
 
 /**
  * Record hotkey from input element
