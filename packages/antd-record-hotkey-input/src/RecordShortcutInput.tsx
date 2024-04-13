@@ -4,7 +4,7 @@ import { Input, Space, Tag } from 'antd';
 import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
-import ActionIcon from './ActionIcon';
+import ActionIcon, { type ActionIconProps } from './ActionIcon';
 import { DisabledContext, SizeContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
@@ -80,20 +80,25 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   const actionStyle: React.CSSProperties | undefined =
     mergedSize !== 'large' ? { maxHeight: 22 } : undefined;
 
+  const baseActionProps: ActionIconProps = {
+    size: 'small',
+    style: actionStyle,
+    type: 'text',
+    disabled: mergedDisabled,
+  };
+
   let actions: React.ReactNode[] = [
     <ActionIcon
+      {...baseActionProps}
       key="edit"
-      size="small"
       onClick={start}
-      type="text"
       title={t('ShortcutInput.edit', 'Edit')}
       icon={<EditOutlined />}
-      style={actionStyle}
     />,
     allowClear && (
       <ActionIcon
+        {...baseActionProps}
         key="clear"
-        size="small"
         onClick={(event) => {
           event.stopPropagation();
           reset();
@@ -101,20 +106,34 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
           setInternalValue('');
           onConfirm?.('');
         }}
-        type="text"
         title={t('ShortcutInput.clear', 'Clear')}
         icon={<CloseCircleFilled />}
-        style={actionStyle}
       />
     ),
   ].filter(Boolean);
 
   if (actions.length > 1) {
-    actions = [<Space.Compact key="actions">{actions}</Space.Compact>];
+    actions = [
+      <Space.Compact
+        key="actions"
+        /**
+         * 4.x 会被 Space.Compact 的 size 默认值 middle 影响（导致按钮变大）
+         * https://github.com/ant-design/ant-design/issues/42724#issuecomment-2053064620
+         * https://github.com/ant-design/ant-design/blob/c6116fad2a42ed77b5ac67204e0bc703b283ce80/components/button/button.tsx#L243
+         */
+        size="small"
+      >
+        {actions}
+      </Space.Compact>,
+    ];
   }
 
   const mergedSuffix = isRecording ? (
-    <Tag style={{ margin: 0 }} color="warning" bordered={false}>
+    /**
+     * Tag 组件的 bordered={false} 是 5.x 的 API
+     * 这里为了兼容 4.x，直接使用 style borderWidth 覆盖。
+     */
+    <Tag style={{ margin: 0, borderWidth: 0 }} color="warning" /** bordered={false} */>
       {t('ShortcutInput.recording', 'Recording...')}
     </Tag>
   ) : (
