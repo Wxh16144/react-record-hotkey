@@ -39,6 +39,11 @@ const verify = (hotkey: Set<string>) => {
 export interface Options {
   onClean?: () => void;
   onConfirm?: (validHotkey: Set<string>) => void;
+  /**
+   * 是否键入回车键后开始录制
+   * @default true
+   */
+  startOnEnter?: boolean;
 }
 
 /**
@@ -69,7 +74,7 @@ export interface Options {
  * ```
  **/
 const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
-  const { onClean, onConfirm } = opt || {};
+  const { onClean, onConfirm, startOnEnter = true } = opt || {};
   const ref = useRef<InputEL | null>(null);
   const blurRef = useRef<'escape' | 'enter' | null>();
   const [keys, setKeys] = useState<Set<string>>(new Set());
@@ -116,13 +121,19 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
   useEventListener(
     'keydown',
     (event) => {
-      if (!isRecording) return;
+      const key = mapKey(event.code);
+
+      const someModifierIsPressed = MODIFIERS.some((key) => event[`${key}Key`]);
+
+      if (!isRecording) {
+        if (key === 'enter' && startOnEnter) {
+          start();
+        }
+        return;
+      }
 
       event.stopPropagation();
       event.preventDefault();
-
-      const someModifierIsPressed = MODIFIERS.some((key) => event[`${key}Key`]);
-      const key = mapKey(event.code);
 
       if (['escape', 'enter'].includes(key) && !someModifierIsPressed) {
         setIsRecording(false);

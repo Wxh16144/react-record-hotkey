@@ -1,4 +1,6 @@
 import type { StandardProps } from 'ahooks/es/useControllableValue';
+import type { Options } from 'react-use-record-hotkey';
+
 import type { InputProps } from 'antd';
 
 type MaybeFunction<T> = T | ((isRecording: boolean) => T);
@@ -20,4 +22,9 @@ export interface RecordShortcutInputProps extends RealInputProps, Partial<Shortc
    */
   formatShortcut?: (shortcut: string) => string;
   onConfirm?: (shortcut: string) => void;
+  /**
+   * Record hotkey options
+   * @since 1.2.0
+   */
+  recordOption?: Omit<Options, 'onClean' | 'onConfirm'>;
 }

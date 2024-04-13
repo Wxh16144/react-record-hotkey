@@ -22,7 +22,7 @@ const internalFormatShortcut = (keys: Set<string>) => {
  *
  * ### 快捷键规则
  * -  允许点击清除按钮清除快捷键。
- * -  允许点击编辑按钮/双击输入框进入编辑状态 (输入框自动聚焦) 此时输入框会显示为黄色。
+ * -  允许点击编辑按钮/双击输入框/输入框内回车进入编辑状态 (输入框自动聚焦) 此时输入框会显示为黄色。
  * -  按下任意合法键组后将会显示在输入框中。
  *
  * -  如果按下的是 ESC 键，退出编辑状态。
@@ -44,6 +44,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     onConfirm,
     disabled,
     size: inputSize,
+    recordOption,
     ...restProps
   } = props;
   const t = useIntl().getMessage;
@@ -58,6 +59,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   const [internalValue, setInternalValue] = React.useState<string>(value);
 
   const [inputRef, keys, { isRecording, start, reset }] = useRecordHotkey({
+    ...recordOption,
     onConfirm: (keys) => {
       const finalKeys = internalFormatShortcut(keys);
       setInternalValue(finalKeys);
