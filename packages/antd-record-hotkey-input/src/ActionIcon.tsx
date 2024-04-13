@@ -2,7 +2,7 @@ import type { ButtonProps, TooltipProps } from 'antd';
 import { Button, Tooltip } from 'antd';
 import type { CSSProperties } from 'react';
 import { useContext } from 'react';
-import DisabledContext from './DisabledContext';
+import { DisabledContext } from './context';
 
 export interface ActionIconProps extends Omit<ButtonProps, 'title'> {
   title?: TooltipProps['title'];

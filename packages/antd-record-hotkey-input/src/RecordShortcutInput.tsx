@@ -5,7 +5,7 @@ import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon from './ActionIcon';
-import DisabledContext from './DisabledContext';
+import { DisabledContext, SizeContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
@@ -16,17 +16,22 @@ const internalFormatShortcut = (keys: Set<string>) => {
 
 // #region shortcut-rules
 /**
- * 快捷键编辑器
- * @description 合法的快捷键格式为：`ctrl + shift + a` （即必须包含修饰键和一个普通键）
- * @rules
- * -  允许点击清除按钮清除快捷键
- * -  点击编辑按钮后，进入编辑状态（输入框自动聚焦）此时输入框会显示为黄色
- * -  按下任意键组合后显示在输入框中（必须是合法的快捷键）
+ * ## 快捷键编辑输入框
  *
- * -  如果按下的是 ESC 键，退出编辑状态
- * -  如果按下的是 Enter 键或者输入框失去焦点，退出编辑状态，判断此时输入框中的内容是合法的快捷键
- * -  如果是合法的快捷键，调用 onChange 并传入此快捷键
- * -  如果不是合法的快捷键，调恢复输入框中的内容为上一次的快捷键
+ * > 合法的快捷键格式为: `ctrl + shift + a`  (即必须包含修饰键和一个普通键）
+ *
+ * ### 快捷键规则
+ * -  允许点击清除按钮清除快捷键。
+ * -  允许点击编辑按钮/双击输入框进入编辑状态 (输入框自动聚焦) 此时输入框会显示为黄色。
+ * -  按下任意合法键组后将会显示在输入框中。
+ *
+ * -  如果按下的是 ESC 键，退出编辑状态。
+ * -  如果按下的是 Enter 键或者输入框失去焦点，退出编辑状态，判断此时输入框中的内容是合法的快捷键。
+ * -  如果是合法的快捷键，调用 onChange 并传入此快捷键。
+ * -  如果不是合法的快捷键，将恢复输入框中的内容为上一次的快捷键。
+ *
+ * ### FAQ
+ * - [如何搭配 antd Form 使用?](https://github.com/Wxh16144/react-record-hotkey/blob/master/docs/examples/antd-form.tsx)
  */
 // #endregion shortcut-rules
 function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.ForwardedRef<InputRef>) {
@@ -38,12 +43,16 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     formatShortcut = defaultFormatShortcut,
     onConfirm,
     disabled,
+    size: inputSize,
     ...restProps
   } = props;
   const t = useIntl().getMessage;
 
   const ctxDisabled = React.useContext(DisabledContext);
   const mergedDisabled = disabled ?? ctxDisabled;
+
+  const ctxSize = React.useContext(SizeContext);
+  const mergedSize = inputSize ?? ctxSize;
 
   const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
   const [internalValue, setInternalValue] = React.useState<string>(value);
@@ -68,6 +77,9 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     inputRef.current = el?.input;
   }, []);
 
+  const actionStyle: React.CSSProperties | undefined =
+    mergedSize !== 'large' ? { maxHeight: 22 } : undefined;
+
   let actions: React.ReactNode[] = [
     <ActionIcon
       key="edit"
@@ -76,6 +88,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
       type="text"
       title={t('ShortcutInput.edit', 'Edit')}
       icon={<EditOutlined />}
+      style={actionStyle}
     />,
     allowClear && (
       <ActionIcon
@@ -91,6 +104,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
         type="text"
         title={t('ShortcutInput.clear', 'Clear')}
         icon={<CloseCircleFilled />}
+        style={actionStyle}
       />
     ),
   ].filter(Boolean);
@@ -100,7 +114,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   }
 
   const mergedSuffix = isRecording ? (
-    <Tag style={{ margin: 0 }} color="warning">
+    <Tag style={{ margin: 0 }} color="warning" bordered={false}>
       {t('ShortcutInput.recording', 'Recording...')}
     </Tag>
   ) : (
@@ -140,6 +154,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     <DisabledContext.Provider value={mergedDisabled}>
       <Input
         readOnly
+        size={mergedSize}
         {...rest}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
