@@ -47,7 +47,6 @@
   },
   "peerDependencies": {
     "@ant-design/icons": "^5",
-    "ahooks": "^3",
     "antd": "^5 || ^4",
     "clsx": "^2",
     "rc-util": "^5",
