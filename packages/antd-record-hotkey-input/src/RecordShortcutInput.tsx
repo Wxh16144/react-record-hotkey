@@ -6,7 +6,7 @@ import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon, { type ActionIconProps } from './ActionIcon';
-import { ConfigContext, DisabledContext, SizeContext } from './context';
+import { ConfigContext, DisabledContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
@@ -48,7 +48,6 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     // === antd ===
     className,
     allowClear,
-    size: inputSize,
     onDoubleClick,
     disabled,
     // === append ===
@@ -61,9 +60,6 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
 
   const ctxDisabled = React.useContext(DisabledContext);
   const mergedDisabled = disabled ?? ctxDisabled;
-
-  const ctxSize = React.useContext(SizeContext);
-  const mergedSize = inputSize ?? ctxSize;
 
   const { getPrefixCls } = React.useContext(ConfigContext);
 
@@ -96,12 +92,8 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     inputRef.current = el?.input;
   }, []);
 
-  const actionStyle: React.CSSProperties | undefined =
-    mergedSize !== 'large' ? { maxHeight: 22 } : undefined;
-
   const baseActionProps: ActionIconProps = {
     size: 'small',
-    style: actionStyle,
     type: 'text',
     disabled: mergedDisabled,
   };
@@ -196,7 +188,6 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
       <Input
         {...restProps}
         readOnly
-        size={mergedSize}
         className={cls}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
