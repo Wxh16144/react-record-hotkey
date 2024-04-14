@@ -1,3 +1,9 @@
+# react-use-record-hotkey [1.2.0](https://github.com/Wxh16144/react-record-hotkey/compare/react-use-record-hotkey@1.1.0...react-use-record-hotkey@1.2.0) (2024-04-14)
+
+### Features
+
+- 添加类名 ([#7](https://github.com/Wxh16144/react-record-hotkey/issues/7)) ([6952597](https://github.com/Wxh16144/react-record-hotkey/commit/6952597f301196d5639aed45afb9a1dbe66dd28d))
+
 # react-use-record-hotkey [1.1.0](https://github.com/Wxh16144/react-record-hotkey/compare/react-use-record-hotkey@1.0.1...react-use-record-hotkey@1.1.0) (2024-04-13)
 
 ### Features
