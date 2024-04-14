@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       'antd-record-hotkey-input': resolve(__dirname, './packages/antd-record-hotkey-input/src'),
       'react-use-record-hotkey': resolve(__dirname, './packages/react-use-record-hotkey/src'),
+      "@test": resolve(__dirname, './tests'),
     },
     coverage: {
       reporter: ['text', 'text-summary', 'json', 'lcov'],

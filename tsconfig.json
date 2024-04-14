@@ -20,7 +20,7 @@
     "types": ["vitest/globals"],
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@test/*": ["tests"],
+      "@test/*": ["tests/*"],
       "antd-record-hotkey-input": ["packages/antd-record-hotkey-input/src"],
       "react-use-record-hotkey": ["packages/react-use-record-hotkey/src"]
     }
