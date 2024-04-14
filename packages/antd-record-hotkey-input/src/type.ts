@@ -1,8 +1,13 @@
-import type { StandardProps } from 'ahooks/es/useControllableValue';
 import type { InputProps } from 'antd';
 import type { Options } from 'react-use-record-hotkey';
 
 type MaybeFunction<T> = T | ((isRecording: boolean) => T);
+
+type StandardProps<T> = {
+  value?: T;
+  defaultValue?: T;
+  onChange?: (val: T) => void;
+};
 
 type ShortcutStandardOptions = StandardProps<string>;
 type RealInputProps = Omit<
@@ -11,7 +16,7 @@ type RealInputProps = Omit<
 >;
 
 export type { InputRef } from 'antd/es/input';
-export interface RecordShortcutInputProps extends RealInputProps, Partial<ShortcutStandardOptions> {
+export interface RecordShortcutInputProps extends RealInputProps, ShortcutStandardOptions {
   status?: MaybeFunction<InputProps['status']>;
   placeholder?: MaybeFunction<InputProps['placeholder']>;
   /**

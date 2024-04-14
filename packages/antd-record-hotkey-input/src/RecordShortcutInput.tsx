@@ -1,7 +1,7 @@
 import { CloseCircleFilled, EditOutlined } from '@ant-design/icons';
-import { useControllableValue, useUpdateEffect } from 'ahooks';
 import { Input, Space, Tag } from 'antd';
 import cx from 'clsx';
+import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
@@ -10,6 +10,7 @@ import { ConfigContext, DisabledContext, SizeContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
+import useUpdateEffect from './useUpdateEffect';
 
 const internalFormatShortcut = (keys: Set<string>) => {
   return Array.from(keys).join(' + ');
@@ -37,15 +38,22 @@ const internalFormatShortcut = (keys: Set<string>) => {
 // #endregion shortcut-rules
 function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.ForwardedRef<InputRef>) {
   const {
+    // === controlled ===
+    value: propValue,
+    defaultValue: propDefaultValue,
+    onChange: propOnChange,
+    // === overwrite ===
     status,
     placeholder,
+    // === antd ===
+    className,
     allowClear,
+    size: inputSize,
     onDoubleClick,
+    disabled,
+    // === append ===
     formatShortcut = defaultFormatShortcut,
     onConfirm,
-    disabled,
-    size: inputSize,
-    className,
     recordOption,
     ...restProps
   } = props;
@@ -59,7 +67,12 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
 
   const { getPrefixCls } = React.useContext(ConfigContext);
 
-  const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
+  const [value, setValue] = useMergedState<string>('', {
+    value: propValue,
+    defaultValue: propDefaultValue,
+    onChange: propOnChange,
+  });
+
   const [internalValue, setInternalValue] = React.useState<string>(value);
 
   const [inputRef, keys, { isRecording, start, reset }] = useRecordHotkey({
@@ -172,9 +185,6 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     start();
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { onChange /** pick, unused */, ...rest } = restProps;
-
   const prefixCls = getPrefixCls('record-hotkey-input');
   const cls = cx(className, prefixCls, {
     [`${prefixCls}-disabled`]: mergedDisabled,
@@ -184,9 +194,9 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   return (
     <DisabledContext.Provider value={mergedDisabled}>
       <Input
+        {...restProps}
         readOnly
         size={mergedSize}
-        {...rest}
         className={cls}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
