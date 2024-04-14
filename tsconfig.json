@@ -7,6 +7,7 @@
     "*.ts",
     "docs",
     "vitest.config.mts",
+    "cypress/**/*"
   ],
   "compilerOptions": {
     "strict": true,
