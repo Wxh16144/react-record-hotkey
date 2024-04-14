@@ -19,9 +19,4 @@ npm i antd-record-hotkey-input -S
 
 ### Interface
 
-```tsx | pure
-export interface Options {
-  onClean?: () => void;
-  onConfirm?: (validHotkey: Set<string>) => void;
-}
-```
+<<< ../packages/react-use-record-hotkey/src/useRecordHotkey.ts#record-option
