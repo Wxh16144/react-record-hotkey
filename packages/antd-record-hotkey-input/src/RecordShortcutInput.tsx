@@ -48,6 +48,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     // === antd ===
     className,
     allowClear,
+    suffix,
     onDoubleClick,
     disabled,
     // === append ===
@@ -121,6 +122,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
         icon={<CloseCircleFilled />}
       />
     ),
+    ...(Array.isArray(suffix) ? suffix : [suffix]),
   ].filter(Boolean);
 
   if (actions.length > 1) {
