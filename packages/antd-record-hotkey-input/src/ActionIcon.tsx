@@ -1,8 +1,9 @@
 import type { ButtonProps, TooltipProps } from 'antd';
 import { Button, Tooltip } from 'antd';
+import cx from 'clsx';
 import type { CSSProperties } from 'react';
 import { useContext } from 'react';
-import { DisabledContext } from './context';
+import { ConfigContext, DisabledContext } from './context';
 
 export interface ActionIconProps extends Omit<ButtonProps, 'title'> {
   title?: TooltipProps['title'];
@@ -12,12 +13,24 @@ export interface ActionIconProps extends Omit<ButtonProps, 'title'> {
 }
 
 const ActionIcon = (props: ActionIconProps) => {
-  const { placement, title, icon, cursor, disabled, style, ...restProps } = props;
+  const { placement, title, icon, cursor, disabled, style, className, ...restProps } = props;
+
   const ctxDisabled = useContext(DisabledContext);
   const mergedDisabled = disabled ?? ctxDisabled;
 
+  const { getPrefixCls } = useContext(ConfigContext);
+
+  const prefixCls = getPrefixCls('action-icon');
+  const cls = cx(className, prefixCls);
+
   let iconNode = (
-    <Button icon={icon} style={{ ...style, cursor }} disabled={mergedDisabled} {...restProps} />
+    <Button
+      icon={icon}
+      style={{ ...style, cursor }}
+      disabled={mergedDisabled}
+      className={cls}
+      {...restProps}
+    />
   );
 
   if (title && !mergedDisabled) {

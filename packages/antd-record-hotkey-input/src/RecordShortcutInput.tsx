@@ -1,11 +1,12 @@
 import { CloseCircleFilled, EditOutlined } from '@ant-design/icons';
 import { useControllableValue, useUpdateEffect } from 'ahooks';
 import { Input, Space, Tag } from 'antd';
+import cx from 'clsx';
 import { composeRef } from 'rc-util/lib/ref';
 import React from 'react';
 import useRecordHotkey from 'react-use-record-hotkey';
 import ActionIcon, { type ActionIconProps } from './ActionIcon';
-import { DisabledContext, SizeContext } from './context';
+import { ConfigContext, DisabledContext, SizeContext } from './context';
 import defaultFormatShortcut from './formatShortcut';
 import { useIntl } from './intl';
 import type { InputRef, RecordShortcutInputProps } from './type';
@@ -44,6 +45,7 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     onConfirm,
     disabled,
     size: inputSize,
+    className,
     recordOption,
     ...restProps
   } = props;
@@ -54,6 +56,8 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
 
   const ctxSize = React.useContext(SizeContext);
   const mergedSize = inputSize ?? ctxSize;
+
+  const { getPrefixCls } = React.useContext(ConfigContext);
 
   const [value, setValue] = useControllableValue<string>(props, { defaultValue: '' });
   const [internalValue, setInternalValue] = React.useState<string>(value);
@@ -171,12 +175,19 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onChange /** pick, unused */, ...rest } = restProps;
 
+  const prefixCls = getPrefixCls('record-hotkey-input');
+  const cls = cx(className, prefixCls, {
+    [`${prefixCls}-disabled`]: mergedDisabled,
+    [`${prefixCls}-recording`]: isRecording,
+  });
+
   return (
     <DisabledContext.Provider value={mergedDisabled}>
       <Input
         readOnly
         size={mergedSize}
         {...rest}
+        className={cls}
         ref={composeRef(bindInputRef, ref)}
         value={formatShortcut(value)}
         placeholder={mergedPlaceholder}
