@@ -12,7 +12,7 @@ type StandardProps<T> = {
 type ShortcutStandardOptions = StandardProps<string>;
 type RealInputProps = Omit<
   InputProps,
-  'readOnly' | 'suffix' | 'status' | 'placeholder' | keyof ShortcutStandardOptions
+  'readOnly' | 'status' | 'placeholder' | keyof ShortcutStandardOptions
 >;
 
 export type { InputRef } from 'antd/es/input';

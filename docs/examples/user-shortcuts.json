@@ -7,7 +7,7 @@
   {
     "label": "保存项目",
     "field": "saveProject",
-    "value": "ctrl+s"
+    "value": ""
   },
   {
     "label": "新建页面",
