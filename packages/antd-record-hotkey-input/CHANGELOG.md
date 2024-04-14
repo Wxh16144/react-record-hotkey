@@ -1,3 +1,16 @@
+# antd-record-hotkey-input [1.2.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.1.0...antd-record-hotkey-input@1.2.0) (2024-04-14)
+
+### Features
+
+- 操作图标按钮添加默认行为 ([39f8f4a](https://github.com/Wxh16144/react-record-hotkey/commit/39f8f4aca499ad9eedf9808647a85e47577915db))
+- 改进以支持输入框的 suffix 功能 ([909473b](https://github.com/Wxh16144/react-record-hotkey/commit/909473b529d261e8e740900d4579fa78f268c10f))
+- 改进受控和非受控逻辑 ([58c10fe](https://github.com/Wxh16144/react-record-hotkey/commit/58c10fead9d911d7399005f7a74c205508d32837))
+- 添加类名 ([#7](https://github.com/Wxh16144/react-record-hotkey/issues/7)) ([6952597](https://github.com/Wxh16144/react-record-hotkey/commit/6952597f301196d5639aed45afb9a1dbe66dd28d))
+
+### Dependencies
+
+- **react-use-record-hotkey:** upgraded to 1.2.0
+
 # antd-record-hotkey-input [1.1.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.0.4...antd-record-hotkey-input@1.1.0) (2024-04-13)
 
 ### Features
