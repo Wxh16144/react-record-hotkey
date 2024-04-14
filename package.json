@@ -19,6 +19,8 @@
     "build:watch": "turbo dev --filter={./packages/*}",
     "ci": "npm run lint && npm run type-check && npm run doctor && npm run build",
     "clean": "del-cli es lib dist coverage .dumi/tmp .eslintcache .doc",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "dev": "dumi dev",
     "docs:build": "dumi build",
     "doctor": "father doctor",
@@ -33,7 +35,8 @@
     "start": "dumi dev",
     "test": "vitest --passWithNoTests",
     "test:coverage": "vitest run --coverage --passWithNoTests",
-    "test:e2e": "cypress run",
+    "test:e2e": "wait-umi start :8000 && npm run cy:open",
+    "test:e2e:ci": "wait-umi start :8000 && npm run cy:run",
     "test:update": "vitest -u",
     "type-check": "tsc -p tsconfig-check.json"
   },
@@ -94,7 +97,8 @@
     "tsx": "^4.7.1",
     "turbo": "^1.12.4",
     "typescript": "^5",
-    "vitest": "latest"
+    "vitest": "latest",
+    "wait-umi": "0.0.1-beta.1"
   },
   "packageManager": "pnpm@8.6.2",
   "publishConfig": {
