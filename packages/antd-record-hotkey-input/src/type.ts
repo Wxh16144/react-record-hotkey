@@ -1,5 +1,6 @@
 import type { InputProps } from 'antd';
 import type { Options } from 'react-use-record-hotkey';
+import type { LocaleType } from './locale/type';
 
 type MaybeFunction<T> = T | ((isRecording: boolean) => T);
 
@@ -31,4 +32,8 @@ export interface RecordShortcutInputProps extends RealInputProps, ShortcutStanda
    * @since 1.2.0
    */
   recordOption?: Omit<Options, 'onClean' | 'onConfirm'>;
+  /**
+   * @since 1.3.0
+   */
+  locale?: Partial<LocaleType['ShortcutInput']>;
 }

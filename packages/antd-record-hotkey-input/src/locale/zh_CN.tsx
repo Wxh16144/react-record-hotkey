@@ -1,4 +1,6 @@
-export default {
+import type { LocaleType } from './type';
+
+const locale: LocaleType = {
   ShortcutInput: {
     edit: '编辑',
     clear: '清除',
@@ -7,3 +9,5 @@ export default {
     recordingPlaceholder: '按任意组合键',
   },
 };
+
+export default locale;
