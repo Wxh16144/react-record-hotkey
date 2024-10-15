@@ -1,0 +1,9 @@
+{
+  "ShortcutInput": {
+    "clear": "Clear",
+    "edit": "Edit",
+    "placeholder": "Double click to edit",
+    "recording": "Recording...",
+    "recordingPlaceholder": "Press any key combination"
+  }
+}
