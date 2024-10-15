@@ -133,5 +133,16 @@ describe('RecordShortcutInput', () => {
 
       expect(getByRole('textbox')).toHaveAttribute('placeholder', 'Double click to edit');
     });
+
+    it('custom locale', () => {
+      const { getByRole } = render(
+        <RecordShortcutInput
+          locale={{
+            placeholder: 'foo',
+          }}
+        />,
+      );
+      expect(getByRole('textbox')).toHaveAttribute('placeholder', 'foo');
+    });
   });
 });
