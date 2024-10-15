@@ -55,14 +55,24 @@ function RecordShortcutInput(props: RecordShortcutInputProps, ref: React.Forward
     formatShortcut = defaultFormatShortcut,
     onConfirm,
     recordOption,
+    locale,
     ...restProps
   } = props;
-  const t = useIntl().getMessage;
-
   const ctxDisabled = React.useContext(DisabledContext);
   const mergedDisabled = disabled ?? ctxDisabled;
 
   const { getPrefixCls } = React.useContext(ConfigContext);
+
+  const intl = useIntl();
+  const t = React.useCallback<(typeof intl)['getMessage']>(
+    (id, defaultMessage) => {
+      const _id = id.replace(/^ShortcutInput\./, '') as keyof typeof locale;
+      // eslint-disable-next-line eqeqeq
+      if (locale?.[_id] != null) return locale[_id];
+      return intl.getMessage(id, defaultMessage);
+    },
+    [intl, locale],
+  );
 
   const [value, setValue] = useMergedState<string>('', {
     value: propValue,
