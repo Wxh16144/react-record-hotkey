@@ -1,3 +1,9 @@
+# antd-record-hotkey-input [1.3.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.2.0...antd-record-hotkey-input@1.3.0) (2024-10-15)
+
+### Features
+
+- support `locale` prop ([#13](https://github.com/Wxh16144/react-record-hotkey/issues/13)) ([2949b1a](https://github.com/Wxh16144/react-record-hotkey/commit/2949b1a1d9c6892f982e0070414579fb6f90df15))
+
 # antd-record-hotkey-input [1.2.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.1.0...antd-record-hotkey-input@1.2.0) (2024-04-14)
 
 ### Features
