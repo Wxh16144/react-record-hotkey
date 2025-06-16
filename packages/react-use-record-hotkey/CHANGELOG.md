@@ -1,3 +1,9 @@
+# react-use-record-hotkey [1.3.0](https://github.com/Wxh16144/react-record-hotkey/compare/react-use-record-hotkey@1.2.0...react-use-record-hotkey@1.3.0) (2025-06-16)
+
+### Features
+
+- add support for additional directional keys in shortcuts ([#15](https://github.com/Wxh16144/react-record-hotkey/issues/15)) ([eac085f](https://github.com/Wxh16144/react-record-hotkey/commit/eac085fa1fa45fa9aed7f007ae6dd00adbb545c5)), closes [#14](https://github.com/Wxh16144/react-record-hotkey/issues/14)
+
 # react-use-record-hotkey [1.2.0](https://github.com/Wxh16144/react-record-hotkey/compare/react-use-record-hotkey@1.1.0...react-use-record-hotkey@1.2.0) (2024-04-14)
 
 ### Features
