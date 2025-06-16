@@ -1,3 +1,13 @@
+# antd-record-hotkey-input [1.4.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.3.0...antd-record-hotkey-input@1.4.0) (2025-06-16)
+
+### Features
+
+- add support for additional directional keys in shortcuts ([#15](https://github.com/Wxh16144/react-record-hotkey/issues/15)) ([eac085f](https://github.com/Wxh16144/react-record-hotkey/commit/eac085fa1fa45fa9aed7f007ae6dd00adbb545c5)), closes [#14](https://github.com/Wxh16144/react-record-hotkey/issues/14)
+
+### Dependencies
+
+- **react-use-record-hotkey:** upgraded to 1.3.0
+
 # antd-record-hotkey-input [1.3.0](https://github.com/Wxh16144/react-record-hotkey/compare/antd-record-hotkey-input@1.2.0...antd-record-hotkey-input@1.3.0) (2024-10-15)
 
 ### Features
