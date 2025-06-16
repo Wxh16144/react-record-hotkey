@@ -22,6 +22,10 @@ const COMMON_SEMANTIC = {
   period: '.',
   slash: '/',
   backslash: '\\',
+  up: '↑',
+  down: '↓',
+  left: '←',
+  right: '→',
 };
 
 const MACOS_MODIFIER = {

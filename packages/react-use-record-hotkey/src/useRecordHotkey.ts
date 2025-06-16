@@ -27,6 +27,10 @@ const allowedChars = [
   'period',
   'slash',
   'backslash',
+  'up',
+  'down',
+  'left',
+  'right',
 ];
 
 const verify = (hotkey: Set<string>) => {
