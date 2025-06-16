@@ -27,6 +27,10 @@ const allowedChars = [
   'period',
   'slash',
   'backslash',
+  'up',
+  'down',
+  'left',
+  'right',
 ];
 
 const verify = (hotkey: Set<string>) => {
@@ -148,6 +152,12 @@ const useRecordHotkey = <InputEL extends HTMLInputElement>(opt?: Options) => {
       // Define allowed keys
       const keyIsAlphaNum = event.keyCode >= 48 && event.keyCode <= 90; // 48-90 is a-z, A-Z, 0-9
       const keyIsBetweenF1andF12 = event.keyCode >= 112 && event.keyCode <= 123; // 112-123 is F1-F12
+      // TODO: Should be deleted. assign: @Wuxh<wxh1220@gmail.com>
+      globalThis.console.log('%c@Wuxh(Red)', 'color:#21c17d;', {
+        __x__: '912483',
+        key,
+      });
+
       const keyIsAllowedChar = allowedChars.includes(key);
 
       const modifiers = new Set(MODIFIERS.filter((key) => event[`${key}Key`]));
